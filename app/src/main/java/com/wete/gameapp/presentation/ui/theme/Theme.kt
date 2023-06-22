@@ -1,4 +1,4 @@
-package com.wete.gameapp.ui.theme
+package com.wete.gameapp.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

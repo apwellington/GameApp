@@ -1,29 +1,19 @@
-package com.wete.gameapp.screen.login.componet
+package com.wete.gameapp.presentation.screen.login.componet
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
@@ -37,11 +27,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.wete.gameapp.R
-import com.wete.gameapp.components.DefaultButton
-import com.wete.gameapp.components.DefaultOutlineTextField
-import com.wete.gameapp.ui.theme.DarkGray500
-import com.wete.gameapp.ui.theme.GameAppTheme
-import com.wete.gameapp.ui.theme.Red500
+import com.wete.gameapp.presentation.components.DefaultButton
+import com.wete.gameapp.presentation.components.DefaultOutlineTextField
+import com.wete.gameapp.presentation.ui.theme.DarkGray500
+import com.wete.gameapp.presentation.ui.theme.Red500
 
 @ExperimentalMaterial3Api
 @Composable
@@ -68,7 +57,8 @@ fun LoginCardComponent() {
         mutableStateOf("")
     }
 
-    Card(modifier = Modifier
+    Card(
+        modifier = Modifier
         .padding(start = 40.dp, end = 40.dp, top = 200.dp)
         .background(color = DarkGray500),
         ) {
@@ -145,16 +135,8 @@ fun BoxHeader() {
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    GameAppTheme(darkTheme = true) {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            LoginContent()
-        }
-    }
+   LoginContent()
 }

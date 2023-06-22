@@ -1,4 +1,4 @@
-package com.wete.gameapp.components
+package com.wete.gameapp.presentation.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,10 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.wete.gameapp.ui.theme.Red500
+import com.wete.gameapp.presentation.ui.theme.Red500
 
 @Composable
 fun DefaultButton(
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .padding(vertical = 45.dp),
     text: String,
     description: String = "",
     onClick: () -> Unit,
@@ -26,9 +29,7 @@ fun DefaultButton(
     icon: ImageVector = Icons.Default.ArrowForward,
 ){
     Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 45.dp),
+        modifier = modifier,
         onClick = { onClick()},
         colors = ButtonDefaults.buttonColors(color)
     ) {
