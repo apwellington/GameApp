@@ -13,8 +13,10 @@ import androidx.navigation.compose.rememberNavController
 import com.wete.gameapp.presentation.navigation.AppNavigation
 import com.wete.gameapp.presentation.screen.login.LoginScreen
 import com.wete.gameapp.presentation.ui.theme.GameAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalMaterial3Api
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var navHostController: NavHostController
