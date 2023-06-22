@@ -12,6 +12,8 @@ import com.wete.gameapp.presentation.screen.login.componet.LoginContent
 @ExperimentalMaterial3Api
 @Composable
 fun LoginScreen(navHostController: NavHostController) {
+
+
     Scaffold(
         topBar = {},
         content = {
