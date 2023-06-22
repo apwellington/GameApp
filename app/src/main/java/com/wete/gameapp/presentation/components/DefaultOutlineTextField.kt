@@ -1,4 +1,4 @@
-package com.wete.gameapp.components
+package com.wete.gameapp.presentation.components
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons

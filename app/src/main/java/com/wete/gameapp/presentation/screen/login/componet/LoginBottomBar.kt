@@ -1,5 +1,6 @@
-package com.wete.gameapp.screen.login.componet
+package com.wete.gameapp.presentation.screen.login.componet
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,9 +15,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import com.wete.gameapp.presentation.navigation.AppScreen
 
 @Composable
-fun LoginBottomBar() {
+fun LoginBottomBar(navHostController: NavHostController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -25,12 +29,14 @@ fun LoginBottomBar() {
     ) {
         Text(text = "No tienes una cuenta?", fontSize = 14.sp, color = Color.Gray)
         Spacer(modifier = Modifier.width(8.dp))
-        Text(text = "Registrate", fontSize = 14.sp, color = Color.Red, fontWeight = FontWeight.Bold)
+        Text(
+            modifier = Modifier.clickable {
+                navHostController.navigate(AppScreen.Singup.route)
+            },
+            text = "Registrate",
+            fontSize = 14.sp,
+            color = Color.Red,
+            fontWeight = FontWeight.Bold
+        )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreviewLoginBottomBar() {
-    LoginBottomBar()
 }

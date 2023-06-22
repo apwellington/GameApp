@@ -1,4 +1,4 @@
-package com.wete.gameapp.ui.theme
+package com.wete.gameapp.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
