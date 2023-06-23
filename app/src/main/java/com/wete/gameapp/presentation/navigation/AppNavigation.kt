@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.wete.gameapp.presentation.screen.login.LoginScreen
+import com.wete.gameapp.presentation.screen.profile.ProfileScreen
 import com.wete.gameapp.presentation.screen.singup.SingupScreen
 
 @ExperimentalMaterial3Api
@@ -22,6 +23,10 @@ fun AppNavigation(navController: NavHostController) {
 
         composable(route = AppScreen.Singup.route){
             SingupScreen(navHostController = navController)
+        }
+
+        composable(route = AppScreen.Profile.route){
+            ProfileScreen(navHostController = navController)
         }
     }
 
