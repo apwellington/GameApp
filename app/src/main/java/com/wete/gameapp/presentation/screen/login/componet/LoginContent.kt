@@ -1,10 +1,12 @@
 package com.wete.gameapp.presentation.screen.login.componet
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -12,28 +14,40 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.wete.gameapp.R
+import com.wete.gameapp.domain.model.Response
 import com.wete.gameapp.presentation.components.DefaultButton
 import com.wete.gameapp.presentation.components.DefaultOutlineTextField
+import com.wete.gameapp.presentation.navigation.AppScreen
 import com.wete.gameapp.presentation.screen.login.LoginViewModel
 import com.wete.gameapp.presentation.ui.theme.DarkGray500
 import com.wete.gameapp.presentation.ui.theme.Red500
 
 @ExperimentalMaterial3Api
 @Composable
-fun LoginContent(viewModel: LoginViewModel = hiltViewModel()) {
+fun LoginContent(
+    navController: NavController,
+    viewModel: LoginViewModel = hiltViewModel()) {
+
+    val loginFlow = viewModel.loginFlow.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,10 +129,38 @@ fun LoginContent(viewModel: LoginViewModel = hiltViewModel()) {
 
                 DefaultButton(
                     text = "Login",
-                    onClick = { },
+                    onClick = { viewModel.login()},
                     enabled = viewModel.isEnableLoginButton,
                 )
             }
+        }
+    }
+
+    loginFlow.value.let {
+        when(it) {
+            Response.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ){
+                    CircularProgressIndicator()
+                }
+            }
+
+            is Response.Success -> {
+               LaunchedEffect(Unit) {
+                   navController.navigate(AppScreen.Profile.route){
+                       popUpTo(AppScreen.Login.route){inclusive = true}
+                   }
+               }
+            }
+
+            is Response.Failure -> {
+                Toast.makeText(LocalContext.current, it.exception?.message ?: "Error Unknown", Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
         }
     }
 }

@@ -17,7 +17,7 @@ fun LoginScreen(navHostController: NavHostController) {
     Scaffold(
         topBar = {},
         content = {
-            LoginContent()
+            LoginContent(navHostController)
         },
         bottomBar = {
             LoginBottomBar(navHostController = navHostController)
